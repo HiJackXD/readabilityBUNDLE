@@ -1,3 +1,18 @@
+## 说明
+
+
+依赖模块
+
+* [StringHelpers](https://github.com/srijiths/StringHelpers)
+* [Network-modifiedByHiJack](https://github.com/HiJackXD/Network)
+
+## 更新
+20170719 
+	
+	修改原Network部分代码
+
+
+## 原始内容
 readabilityBUNDLE
 =================
 
@@ -33,7 +48,7 @@ You can see all author citations in each java file itself.
 Dependency Projects
 ===================
 * [StringHelpers](https://github.com/srijiths/StringHelpers)
-* [Network](https://github.com/srijiths/Network)
+* [Network](https://github.com/srijiths/Network)  
 * [NextPageFinder] (https://github.com/srijiths/NextPageFinder)
 
 Usage
