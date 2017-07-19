@@ -1,13 +1,19 @@
 package com.sree.textbytes.readabilityBUNDLE;
 
+import com.sree.textbytes.network.HtmlFetcher;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.StringEscapeUtils;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Unit test for simple App.
  */
-public class AppTest 
+public class AppTest
     extends TestCase
 {
     /**
@@ -33,6 +39,33 @@ public class AppTest
      */
     public void testApp()
     {
-        assertTrue( true );
+
+       Article article = new Article();
+        ContentExtractor ce = new ContentExtractor();
+        HtmlFetcher htmlFetcher = new HtmlFetcher();
+        String html = null;
+        try {
+           // html = htmlFetcher.getHtml("http://www.militarytimes.com/articles/burns-sees-vietnam-war-as-virus-documentary-as-vaccination", 0,"gbk");
+            html = htmlFetcher.getHtml("http://www.gpowersoft.com/news/2437.htm", 0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        article = ce.extractContent(html, "ReadabilitySnack");
+
+        try {
+            System.out.println("article.getMetaDescription() " + article.getMetaDescription());
+            System.out.println("article.getCanonicalLink() = " + article.getCanonicalLink());
+            System.out.println("article.getMetaKeywords() = " + article.getMetaKeywords());
+            System.out.println("article.getTopImage() = " + article.getTopImage());
+            String title = StringEscapeUtils.unescapeHtml(article.getTitle()) ;
+            System.out.println("title = " + title);
+           // System.out.println(article.getRawHtml());
+            FileUtils.writeStringToFile(new File("D:/1.html"), article.getCleanedArticleText());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //System.out.println("Content : "+article.getCleanedArticleText());
     }
 }
